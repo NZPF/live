@@ -1,0 +1,7 @@
+<div>
+	<live-list class="live-list" ref="dataList" v-bind:oItems="oLives" v-on:load-more="loadMore"></live-list>
+	<div v-if="status.noMore" class="no-more">
+		 <img src="../img/no-more.png"/>
+		<span>没有更多了</span>
+	</div>
+</div>

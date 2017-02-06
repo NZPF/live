@@ -1,0 +1,65 @@
+<div>
+	<!--live Box Title-->
+	<div id="live_box_title" class="card">
+		<img v-bind:src="info.imgURL" />
+		<div id="live_title_info">
+			<h4>{{info.title}}</h4>
+			<span>{{info.leaderName}}</span>
+		</div>
+	</div>
+
+	<!--live Time-->
+	<div id="live_time" class="card">
+		<div id="live_time_info">
+			<span>时间({{info.startTime}})</span>
+			<span>{{info.time}}</span>
+		</div>
+		<div id="live_time_operator">
+			<img @click="likeLive" v-show="info.isLike!=1" src="../img/un-heart-c.png" />
+			<img @click="likeLive" v-show="info.isLike==1" src="../img/heart-c.png" />
+			<img @click="gift" src="../img/gift.png" />
+		</div>
+	</div>
+
+	<!--live participants-->
+	<div id="live_participants" class="card">
+		<div id="live_participants_icon">
+			<img v-for="(participant,index) in oParticipants" v-bind:src="participant.imgURL"/>
+		</div>
+		<span>已有{{info.participantsCount}}人参与</span>
+	</div>
+
+	<!--live intro-->
+	<div id="live_intro" class="card">
+		<h5>Live简介</h5>
+		<p>{{info.intro}}</p>
+	</div>
+
+	<!--live Listener-->
+	<div id="live_listener" class="card">
+		<h5>Live须知</h5>
+		<p>版权声明：讲者在本产品上发表的全部原创内容（包括但不限于文字、音频、图片等）著作权均归讲者本人所有。未经讲者授权许可，听众用户不得以任何载体或形式使用讲者的内容。</p>
+	</div>
+
+	<!--live more-->
+	<div>
+
+	</div>
+
+	<!--live panel-->
+	<div id="live_panel" class="card">
+		<button @click="livingPage" type="button" v-if="isCreate||isBuy">进入Live</button>
+		<button @click="reBuyLive" type="button" v-else>赞助并参与Live(￥{{info.price}})</button>
+	</div>
+
+	<transition name="buy">
+		<div  v-if="status.reBuy"  id="buy_alert">
+			<h4>花费{{info.price}}元购买吗？</h4>
+			<div id="buy_alert_operator">
+				<button @click="buyLive" type="button">购买</button>
+				<button @click="cancelBuyLive" type="button">取消</button>
+			</div>
+		</div>
+	</transition>
+
+</div>

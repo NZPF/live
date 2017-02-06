@@ -1,0 +1,13 @@
+<div>
+	<div class="m-input">
+		<div class="m-input-title">
+			<span class="m-input-label">{{title}}</span><span v-if="must" class="m-input-must">*</span>
+		</div>
+		<input @keyup="keyUp" v-show="input" v-bind:class="{'error-active':error}" v-bind:type="type" v-model="con"/>
+		<textarea @keyup="keyUp" v-if="text" rows="3" v-bind:class="{'error-active':error}" v-model="con"></textarea>
+		<select v-if="select" v-bind:class="{'error-active':error}" v-model="con" >
+			<option>请选择</option>
+			<option v-for="(item,index) in oItems">{{item}}</option>
+		</select>
+	</div>
+</div>

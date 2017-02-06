@@ -1,0 +1,26 @@
+<div>
+	<div id="my_panel" class="panel">
+		<div>
+			<img src="../img/test.png" />
+			<span>消息收藏</span>
+		</div>
+		<div @click="likeLive">
+			<img src="../img/mark.png" />
+			<span>感兴趣的Live</span>
+		</div>
+	</div>
+	
+	<div @click="myInfo" class="my-operator">
+		<span>我的信息</span>
+	</div>
+	
+	<div @click="myCreateLive" class="my-operator">
+		<span>我创建的Live</span>
+	</div>
+	<live-list v-show="status.createList" v-on:load-more="loadMore" ref="createList"  class="live-list" v-bind:clickLoadMode="true" v-bind:oItems="lives"></live-list>
+	<div class="my-operator">
+		<span>我赞助的Live({{buyLives.length}})</span>
+		<span @click="createLive">发起一场Live</span>
+	</div>
+	<live-list ref="dataList" class="live-list" v-on:load-more="loadMore"  v-bind:oItems="buyLives"></live-list>
+</div>

@@ -1,0 +1,26 @@
+<div class="mui-content">
+	<div class="title">
+		欢迎来到Live
+	</div>
+	<div id="enter_con">
+		<div id="enter_title">
+			<span>{{status.login?"登陆":"注册"}}</span>
+			<span @click="change">
+				{{status.login?"去注册":"去登陆"}} 
+			</span>
+		</div>
+		<div class="mui-input-group">
+			<div class="mui-input-row">
+				<input v-model="tel" type="tel" maxlength="11" name="tel" id="tel" placeholder="请输入手机号" />
+			</div>
+			<div class="mui-input-row">
+				<input v-model="pwd" class="mui-input-password" type="password" name="password" id="password" placeholder="密码不少于6位" />
+				<span @click="showPwd" class="mui-icon mui-icon-eye"></span>
+			</div>
+			<div class="mui-input-row" v-show="!status.login">
+				<input v-model="name" type="text" placeholder="请输入名字" />
+			</div>
+		</div>
+	</div>
+	<button @click="submit" id="btn_bot_enter" type="button">{{status.login?"登陆":"注册"}}</button>
+</div>

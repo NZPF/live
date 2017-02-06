@@ -1,0 +1,14 @@
+{
+  "index.html": {
+    "resources": [
+      "lib/vue-material.js",
+      "js/main.js",
+      "lib/vue.js",
+      "css/vue-material.css",
+      "lib/vue-material.debug.js",
+      "output/bundle.js",
+      "src/components/vue-material.js",
+      "src/components/mui.js"
+    ]
+  }
+}

@@ -1,0 +1,11 @@
+<div>
+	<div @click="sortItemPage" class="sort-item" v-for="(item,index) in oSorts">
+		<div class="sort-title">
+			<h5>{{item.name}}</h5>
+			<span>{{item.count}}个Live</span>
+		</div>
+		<button @click="follow(item)" type="button" v-bind:class="{'is-follow':item.isFollow==1}">
+			{{item.isFollow==1?"已订阅":"+ 订阅"}}
+		</button>
+	</div>
+</div>

@@ -1,0 +1,32 @@
+<div>
+	<div class="swiper-container" id="all_page_swiper">
+		<div class="swiper-wrapper">
+			<div class="swiper-slide">
+				<img src="../img/allTopicTitle.jpg" />
+			</div>
+			<div class="swiper-slide">
+				<img src="../img/allTopicTitle.jpg" />
+			</div>
+			<div class="swiper-slide">
+				<img src="../img/allTopicTitle.jpg" />
+			</div>
+		</div>
+	</div>
+
+	<div id="all_panel" class="panel">
+		<div @click="sortPage">
+			<img src="../img/lei.png" />
+			<span>分类浏览</span>
+		</div>
+		<div>
+			<img src="../img/top.png" />
+			<span>热门精选</span>
+		</div>
+		<div @click="mySubscriberPage">
+			<img src="../img/my.png" />
+			<span>我的订阅</span>
+		</div>
+	</div>
+	
+	<live-list ref="dataList" class="live-list" v-on:load-more="loadMore" v-bind:oItems="lives"></live-list>
+</div>

@@ -1,0 +1,82 @@
+<div>
+		<div @click="menuOperator" v-if="status.liveMenu" id="live_menu">
+			<ul>
+				<li @click="toTop">去顶部</li>
+				<li @click="toBottom">去底部</li>
+				<li @click="onlyLeader">只看主讲</li>
+				<li @click="offLive" v-if="status.offLive">结束Live</li>
+			</ul>
+		</div>
+		
+		<div id="live_con">
+			<div v-if="info.progress==0||info.progress==2" id="live_snapshot_info" v-show="status.infoLoaded">
+				<div id="live_leader_icon">
+					<img v-bind:src="info.imgURL"/>
+					<span id="leader_name">{{info.leaderName}}</span>
+					<span id="leader_tag">Live主讲人</span>
+				</div>
+				<div id="live_intro">
+					{{info.intro}}
+				</div>
+			</div>		
+			
+			<div id="live_msg_items" v-on:touchstart="msgTouchStart">
+				<!--item-->
+				<div v-show="item.display"  v-for="(item,index) in live.oMsgItems" class="live-item" v-bind:class="{'live-item-user':!item.isLeader}">
+					<!--头像-->
+					<img class="live-item-icon  mui-col-sm-1" v-bind:src="item.imgURL"/>
+					<!--总内容-->
+					<div class="live-item-con">
+						<div class="live-item-name">
+							<span>{{item.name}}</span>
+						</div>
+						<div class="live-item-msg">
+							<!--文本内容-->
+							<span class="live-item-txt">
+								{{item.con}}
+							</span>
+							<!--语音-->
+							<!--<div class="live-item-voice" v-if="item.hasVoice">
+								 <svg viewBox="0 0 22 22" v-if="!item.playing">
+                                            <path d="M0 11C0 4.925 4.924 0 11 0c6.075 0 11 4.924 11 11 0 6.075-4.924 11-11 11-6.075 0-11-4.924-11-11zm9.168 4.373c-.596.357-1.346-.082-1.346-.788v-7.17c0-.706.75-1.145 1.346-.788l6.198 3.716c.49.294.49 1.02 0 1.314l-6.198 3.716z"
+                                                  fill-rule="evenodd"></path>
+                                        </svg>
+                                <svg viewBox="0 0 22 22" v-if="item.playing">
+                                    <path d="M0 11C0 4.925 4.924 0 11 0c6.075 0 11 4.924 11 11 0 6.075-4.924 11-11 11-6.075 0-11-4.924-11-11zm7-3.748c0-.415.344-.752.757-.752h1.486c.418 0 .757.342.757.752v7.496c0 .415-.344.752-.757.752H7.757c-.418 0-.757-.342-.757-.752V7.252zm5 0c0-.415.344-.752.757-.752h1.486c.418 0 .757.342.757.752v7.496c0 .415-.344.752-.757.752h-1.486c-.418 0-.757-.342-.757-.752V7.252z"
+                                          fill-rule="evenodd"></path>
+                                </svg>
+								<div class="line"></div>
+								<span class="live-item-voice-length">12:34</span>
+							</div>-->
+						</div>
+						<div class="live-item-like">
+							<svg viewBox="0 0 24 24">
+                                     <path d="M12 19c-5.538-3.818-8-5.727-8-9.545C4 6.91 5.846 5 8.308 5c1.846 0 2.938.865 3.692 1.91C12.754 5.864 13.846 5 15.692 5 18.154 5 20 6.91 20 9.455c0 3.82-2.462 5.727-8 9.545z"></path>
+                            </svg>
+							<span>
+								{{item.likeCount}}人喜欢
+							</span>
+						</div>
+					</div>
+				</div>
+				<div v-show="!status.msgLoaded" class="msgTag">加载中...</div>
+				<div v-show="status.noMsg" class="msgTag">还没有记录</div>
+			</div>
+			
+		</div>
+		
+		<!--赞 心 喇叭 鼓掌 语音-->
+		<div id="living_panel" v-on:touchstart="touchStart($event)" v-on:touchmove="touchMove($event)" v-bind:class="{'low-version':status.lowVersion}">
+				<div id="living_input">
+					<span class="un-input" v-show="!status.infoLoaded">加载中...</span>
+					<span class="un-input" v-if="info.progress==0">Live未开始</span>
+					<span class="un-input" v-if="info.progress==2">Live已结束</span>
+					<input v-model="live.msg" v-if="info.progress==1" type="text" placeholder="输入你的问题..."/>
+				</div>
+				<div v-if="info.progress==1" id="living_send">
+					<img @click="sendMsg" src="../img/send.png"></img>
+					<img @click="sendVoice" src="../img/micro.png"/>
+					<img v-if="!status.lowVersion" @click="sendNice" src="../img/nice.png" />
+				</div>
+		</div>
+</div>

@@ -1,0 +1,52 @@
+<div>
+	<div id="comment">
+		<h6>{{title}}</h6>
+		<h6>愿意把本次Live推荐给朋友吗?</h6>
+		<div id="faces">
+			<div @click="will" v-bind:class="{'face-active':status.will}">
+				<img src="../img/bigsmile.png" />
+				<span>愿意</span>
+			</div>
+			<div @click="may" v-bind:class="{'face-active':status.may}">
+				<img src="../img/blah.png" />
+				<span>不一定</span>
+			</div>
+			<div @click="not" v-bind:class="{'face-active':status.not}">
+				<img src="../img/frown.png" />
+				<span>不会</span>
+			</div>
+		</div>
+		<div id="stars">
+			<div class="stars-item">
+				<span>内容专业性</span>
+				<div class="stars-select">
+					<div @click="starSelect(0,index)" v-for="(star,index) in subjectStars[0]">
+						<img v-show="!star" src="../img/un-start.png" />
+						<img v-show="star" src="../img/fill-start.png" />
+					</div>
+				</div>
+			</div>
+			<div class="stars-item">
+				<span>内容信息量</span>
+				<div class="stars-select">
+					<div @click="starSelect(1,index)" v-for="(star,index) in subjectStars[1]">
+						<img v-show="!star" src="../img/un-start.png" />
+						<img v-show="star" src="../img/fill-start.png" />
+					</div>
+				</div>
+			</div>
+			<div class="stars-item">
+				<span>使用体验</span>
+				<div class="stars-select">
+					<div @click="starSelect(2,index)" v-for="(star,index) in subjectStars[2]">
+						<img v-show="!star" src="../img/un-start.png" />
+						<img v-show="star" src="../img/fill-start.png" />
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="comment_panel">
+		<button @click="submitComment" type="button">提交评论</button>
+	</div>
+</div>

@@ -1,0 +1,65 @@
+<div id="app">
+
+	<transition name="error-g">
+		<div v-if="status.showErrorTag" id="error_alert">
+			<span>{{errorTag}}</span>
+		</div>
+	</transition>
+
+	<div v-if="dialogStatus.show" id="dialog_g">
+		<p>{{dialogStatus.title}}</p>
+		<div id="dialog_operator">
+			<div @click="dialogAccept">是</div>
+			<div @click="dialogDeny">否</div>
+		</div>
+	</div>
+
+	<nav id="nav" v-show="status.showNav" v-bind:class="{'show-operator':status.showNavOperator}">
+		<div id="nav_navigator">
+			<span @click="exit" v-show="status.showExit" class="mui-icon mui-icon-undo"></span>
+			<span @click="back" v-show="status.showNavgator" class="mui-icon mui-icon-back"></span>
+		</div>
+
+		<div id="nav_title" class="nav-title-normal" v-bind:class="{'nav-title-living':status.livingPage,'nav-title-mypage':status.myPage}">
+			<h3>{{navTitle}}</h3>
+			<span>未开始(123)</span>
+		</div>
+
+		<div id="nav_operator">
+			<span v-show="status.showAllBtn" @click="allPage">全部Live</span>
+			<span v-show="status.showMoreBtn" @click="liveOperator" class="mui-icon mui-icon-more"></span>
+			<span v-show="status.showInfoBtn" @click="liveInfo" class="mui-icon mui-icon-info"></span>
+			<span v-show="status.showSubmit" @click="uploadOperator" class="mui-icon mui-icon-upload"></span>
+		</div>
+	</nav>
+
+	<router-view v-on:error="error" v-on:change-page="changePage" id="enter" name="enter"></router-view>
+	<!--<keep-alive>-->
+	<router-view class="page" v-on:error="error" v-on:change-page="changePage" id="my_page" name="myPage"></router-view>
+	<!--</keep-alive>-->
+	<keep-alive>
+		<router-view class="page" v-on:error="error" v-on:change-page="changePage" id="all_page" name="allPage"></router-view>
+	</keep-alive>
+	<!--<keep-alive>-->
+	<router-view class="page" v-on:dialog="dialog" v-on:error="error" v-on:change-page="changePage" id="living_page" name="livingPage"></router-view>
+	<!--</keep-alive>-->
+	<keep-alive>
+		<router-view class="page" v-on:error="error" v-on:change-page="changePage" id="like_page" name="likePage"></router-view>
+	</keep-alive>
+
+	<router-view class="page" v-on:error="error" v-on:change-page="changePage" id="live_info_page" name="liveInfoPage"></router-view>
+	<router-view class="page" v-on:error="error" v-on:back="back" v-on:change-page="changePage" id="comment_page" name="commentPage"></router-view>
+
+	<!--<keep-alive>-->
+	<router-view class="page" v-on:error="error" v-on:change-page="changePage" id="sort_page" name="sortPage"></router-view>
+	<!--</keep-alive>-->
+	<router-view class="page" v-on:error="error" v-on:change-page="changePage" id="my_subscriber_page" name="mySubscriberPage"></router-view>
+
+	<keep-alive>
+		<router-view class="page" v-on:error="error" v-on:back="back" v-on:change-page="changePage" id="create_page" name="createPage"></router-view>
+	</keep-alive>
+	<keep-alive>
+		<router-view class="page" v-on:error="error" v-on:change-page="changePage"  id="my_info_page" name="myInfoPage"></router-view>
+	</keep-alive>
+	<router-view class="page" v-on:error="error" v-on:back="back" v-on:change-page="changePage" id="select_icon_page" name="selectIconPage"></router-view>
+</div>

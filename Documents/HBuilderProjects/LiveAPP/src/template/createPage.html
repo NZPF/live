@@ -1,0 +1,12 @@
+<div>
+	<div id="create_con">
+		<m-input title="Live标题" name="title"  errorTag="请输入Live标题" type="text" v-bind:input="true" v-bind:must="true" ></m-input>
+		<m-input title="自我介绍" name="intro" errorTag="请输入自我介绍" v-bind:text="true" v-bind:must="true"></m-input>
+		<m-input title="手机号码" name="tel" errorTag="请输入手机号码" type="tel" v-bind:input="true"  v-bind:must="true"></m-input>
+		<m-input title="你的所在行业" name="industry" errorTag="请选择 你的所在行业" v-bind:select="true" v-bind:must="true" v-bind:oItems='["金融","医疗/生物制药","法律","媒体/广告","互联网/电子商务","游戏","科研/教育","硬件设备制造业","咨询","旅游","建筑/房地产","心理学","学生","其他"]'></m-input>
+		<m-input title="Live主题分类" name="subject" errorTag="请选择Live主题分类" v-bind:select="true" v-bind:must="true" v-bind:oItems='["金融与经济","科学技术","互联网","心理学","法律","文学","设计","艺术","音影游","生活方式","教育","职业","体育","商业","医学与健康"]'></m-input>
+		<m-input title="门票价格" name="price" errorTag="请选择门票价格" v-bind:select="true" v-bind:must="true" v-bind:oItems='["1元","10元","20元","30元","40元","50元","60元","70元"]'></m-input>
+		
+	<button id="btn_create" @click="create" type="button">确认创建</button>
+	</div>
+</div>
